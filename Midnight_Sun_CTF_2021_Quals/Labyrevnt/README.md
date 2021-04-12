@@ -12,19 +12,19 @@ Let's export the listing file for the binary `chall` from IDA Pro. This file bas
 
 1. Based on `jz` condition check, such as this one:
    
-   ![JZ](https://github.com/dragon-dreamer/ctf-writeups/Midnight_Sun_CTF_2021_Quals/Labyrevnt/jz.png)
+   ![JZ](https://github.com/dragon-dreamer/ctf-writeups/blob/main/Midnight_Sun_CTF_2021_Quals/Labyrevnt/jz.png)
    
    The `jz` instruction is always preceded by the `cmp` instruction, which essentially tells the character required to follow this condition.
    
 2. Based on `jnz` condition check, such as the following one:
    
-   ![JNZ](https://github.com/dragon-dreamer/ctf-writeups/Midnight_Sun_CTF_2021_Quals/Labyrevnt/jnz.png)
+   ![JNZ](https://github.com/dragon-dreamer/ctf-writeups/blob/main/Midnight_Sun_CTF_2021_Quals/Labyrevnt/jnz.png)
    
    The `jnz` instruction is also always preceded by the `cmp` instruction, as in the previous case. We get the input character in the same way here.
    
 3. Based on the optimized switch-case with the transition table stored as data. For example:
    
-   ![Switch-case](https://github.com/dragon-dreamer/ctf-writeups/Midnight_Sun_CTF_2021_Quals/Labyrevnt/switch-case.png)
+   ![Switch-case](https://github.com/dragon-dreamer/ctf-writeups/blob/main/Midnight_Sun_CTF_2021_Quals/Labyrevnt/switch-case.png)
    
    Here some value is first subtracted from the `eax` register, and then the switch-case transition table is read from the `unk_71244` offset (this offset is different for each function, as each function has its own table), and then the jump offset is calculated using this table and the `eax` value. After the offset is calculated and corrected (in case the binary is relocated), the code jumps to it using the `jmp rax` instruction. To determine, which `eax` value leads the function call we are looking for, we need to look at the offsets of the switch-case jump table. Offsets are stored at the indexes from `0` to some positive value, and the `eax` value indicates, which index will be used. So we'll need to find the offset index from the offset, which essentially gives us the `eax` value after subtraction.
 
@@ -331,6 +331,6 @@ array_map(fn($val) => print($val . ' '), $jumpValues);
 
 That's all, folks! We can now get the solution in less than a second :blush::
 
-![Switch-case](https://github.com/dragon-dreamer/ctf-writeups/Midnight_Sun_CTF_2021_Quals/Labyrevnt/output.png)
+![Switch-case](https://github.com/dragon-dreamer/ctf-writeups/blob/main/Midnight_Sun_CTF_2021_Quals/Labyrevnt/output.png)
 
-See [solve.php](https://github.com/dragon-dreamer/ctf-writeups/Midnight_Sun_CTF_2021_Quals/Labyrevnt/solve.php) for the full solution.
+See [solve.php](https://github.com/dragon-dreamer/ctf-writeups/blob/main/Midnight_Sun_CTF_2021_Quals/Labyrevnt/solve.php) for the full solution.
