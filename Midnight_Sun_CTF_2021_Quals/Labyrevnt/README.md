@@ -4,7 +4,7 @@ Here I present probably the most unusual and crazy way to solve this task :see_n
 
 _You are given a binary file (named `chall`) with many similar `walk_***` functions, which call each other based on user input.  These functions read a character from the input and decide the next call based on this character. You have to find the input, which will finally transfer execution to a function, which returns the non-zero value._ This will make the `main` function output the flag:
 
-![Main code decompiled](https://github.com/dragon-dreamer/ctf-writeups/Midnight_Sun_CTF_2021_Quals/Labyrevnt/main-decompiled.png)
+![Main code decompiled](https://github.com/dragon-dreamer/ctf-writeups/blob/main/Midnight_Sun_CTF_2021_Quals/Labyrevnt/main-decompiled.png)
 
 One of the functions, which returns `1`, is the `walk_end` function. So, basically, we are required to find a path from `walk_start` to `walk_end`, as well as the sequence of input characters, which make the code follow this path.
 
