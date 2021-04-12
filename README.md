@@ -1,2 +1,1 @@
-# ctf-writeups
-CTF write-ups
+# Write-ups for some tasks of different CTF competitions
